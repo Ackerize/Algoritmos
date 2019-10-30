@@ -25,18 +25,33 @@ class ListaDobleEnlazada{
           temp = temp->sig;
         }
      }
+     void mostrarListaAtras(){
+        Nodo *temp = fin;
+        if(!inicio)
+          cout << "La lista no posee elementos" << endl;
+        else
+          while(temp){
+             cout << temp->dato<<", ";
+             temp = temp->prev;
+          }
+      }
+  
      
      void agregarElemento(int valor){
        Nodo *n = crearNodo(valor), *temp;
-       if(!inicio)
+       if(!inicio){
         inicio = n;
+        fin = n;
+       }
        else{
-        for(temp=inicio; temp->sig; temp = temp->sig);
-          temp->sig = n;
+        fin->sig = n;
+         n->prev = fin;
+         fin = n;
        }
       }
       
       ListaEnlazada(){
         inicio=nullptr;
+        fin = nullptr;
        }
 };
